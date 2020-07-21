@@ -1,0 +1,64 @@
+{
+    "azureml_user":
+    {
+        "subscription_id": "ab221ca4-f098-422d-ab2f-5073b3851e68",
+        "resource_group": "TutorialTestA",
+        "workspace_name": "TutorialTestA1"
+    },
+    "aml_compute":
+    {
+        "vnet_name":"TutorialTestA-vnet",
+        "subnet_name":"default",
+        "ct_name":"clara-ct",
+        "exp_name":"clara_setup",
+        "vm_name":"Standard_NC24s_v3",
+        "min_nodes":0,
+        "max_nodes":1,
+        "idle_seconds_before_scaledown":300,
+        "python_interpreter":"/usr/bin/python",
+        "conda_packages":["matplotlib","jupyterlab"],
+        "environment_name":"clara_env",
+        "docker_enabled":true,
+        "user_managed_dependencies":true,
+        "jupyter_port":9000
+    },
+    "ngc_content":
+    {
+        "base_dockerfile":"nvcr.io/nvidia/clara-train-sdk:v3.0",
+        "additional_content":
+        [
+            {
+                "url":"https://api.ngc.nvidia.com/v2/resources/nvidia/med/getting_started/versions/1/zip",
+                "filename":"clarasdk.zip",
+                "localdirectory":"clara",
+                "computedirectory":"clara",
+                "zipped":true
+            },
+            {
+                "url":"https://api.ngc.nvidia.com/v2/models/nvidia/med/clara_train_covid19_ct_lung_seg/versions/1/zip",
+                "filename":"clara_train_covid19_ct_lung_seg_1.zip",
+                "localdirectory":"clara/experiments/covid19_ct_lung_seg-v2",
+                "computedirectory":"clara/experiments/covid19_ct_lung_seg-v2",
+                "zipped":true
+            },
+            {
+                "url":"https://api.ngc.nvidia.com/v2/models/nvidia/med/clara_train_covid19_3d_ct_classification/versions/1/zip",
+                "filename":"clara_train_covid19_3d_ct_classification_1.zip",
+                "localdirectory":"clara/experiments/covid19_3d_ct_classification-v2",
+                "computedirectory":"clara/experiments/covid19_3d_ct_classification-v2",
+                "zipped":true
+            }
+        ]
+    },
+    "supported_vm_sizes":
+    {
+        "Standard_NC6s_v2"    : 1,
+        "Standard_NC12s_v2"   : 2,
+        "Standard_NC24s_v2"   : 4,
+        "Standard_NC24sr_v2"  : 4,
+        "Standard_NC6s_v3"    : 1,
+        "Standard_NC12s_v3"   : 2,
+        "Standard_NC24s_v3"   : 4,
+        "Standard_NC24sr_v3"  : 4
+      }
+}
